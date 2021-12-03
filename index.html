@@ -55,11 +55,29 @@ div {text-align: center;}
         the number of gun deaths decreased drastically but in reality the number of gun deaths increased. The overall goal of this display is very unclear, and is a perfect 
         example of a misleading data visualization. This line graph can lead people to believe certain things that are untrue.</p>
       <center> <img src="https://cdn.discordapp.com/attachments/915657987975184445/915658642840256602/h5MSdPM97fm55kTk4kk4P7.jpg" alt="Gun Deaths in Florida Graph" width="400" height="500"></center>
+      <h2>Munging, Wrangling, and Data Cleaning</h2>
+      <p> Data Cleaning is a method that is used to take raw data and transform it into something useful. Changing the format of the data may be necessary to create graphs or 
+        perform calculations to illustrate or support the conclusion a computer scientist is trying to make about a particular topic. Two ways of doing this are Munging and 
+        Wrangling.</p>
+      <h2>What is Munging?</h2>
+      <p> This term is used to describe the filtering or transforming of raw data into a more usable form. This is usually done in steps. For example if the data a computer
+        scientist gathered looked like this.</p>
+      <br>
+      <p> “The school bus goes to West High School @ 5:40 AM every weekday.”
+          “The school bus goes to West High School @ 3:40 PM every weekday.”
+          “The school bus goes to East Middle School at 6:15 am every weekday.”</p>
+      <br>
+      <p> If the computer scientist wanted to know what school the bus went to at what time then step 1 may be to make all the text lower case. Step 2 may be to remove the
+        parts of the string after ‘am’ or ‘pm’ and the beginning of the string ‘The school bus goes to’. Step 3 would then be to split the school from the time and change
+        the time to military. The cleaned data may look more like this:</p>
+      <br>
+      <center><p> “West High School”, “0540”
+                  “West High School”, “1540”
+                  “East Middle School”, “0615”</p></center>
+
+
+
   <head>
   <body>
-    body {
- background-image: url("https://cdn.discordapp.com/attachments/915657987975184445/916376191441715310/pexels-photo-1939485.jpeg");
- background-color: #cccccc;
-}
   <body>
 <html>     
