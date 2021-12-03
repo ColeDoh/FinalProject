@@ -2,13 +2,8 @@
 <html>
   <head>
 <style>
-  #content {
-        position: relative;
-    }
     #content img {
-        position: absolute;
-        top: 0px;
-        right: 0px;
+        width: 200px;
     }
 h.solid {border-style: solid;}
 a {font-size: 30px;}
@@ -30,15 +25,22 @@ h3 {text-align: center;
     color: #158FFA;
   }
 div {text-align: center;}
+#heading {
+	display: flex;
+}
+#heading img {
+	width: 200px;
+margin: 0 auto;
+}
 </style>
-    <div id="content" style="float:left; width: 20%;">
+<div id="heading">
     <img src="https://cdn.discordapp.com/attachments/915657987975184445/916373911447408710/data-science-predictions-for-near-future-1024x440.jpeg.optimal.jpeg" class="ribbon"/>
-    <div>some text...</div>
-</div>
-    <h1>Final Project - Data Science for Good</h1>
-    <br>
+    <div id="title-box">
+<h1>Final Project - Data Science for Good</h1>
     <h3>Cora Wagner, Coleman Doherty, Nathaniel Champion<h3>
-    <br>
+</div>
+    <img src="https://cdn.discordapp.com/attachments/915657987975184445/916373911447408710/data-science-predictions-for-near-future-1024x440.jpeg.optimal.jpeg" class="ribbon"/>
+</div>
     <h2>Introduction</h2>
       <center><p>The topic we have chosen is the effect of drugs on various statistics within the popular game of Fortnite. The data follows one person throughout a five day period. 
         The affected person is either under the influence of drugs or sober. The statistics we will draw from are the number of eliminations, where they placed, time of day, 
