@@ -125,7 +125,7 @@ code:before{
 	      We did this so that we could separate the data for the player while he was sober, and then for when he was high. 
 	      We were able to provide two lines of best fit since we separated the data for sober and high from the initially created data frame.
 	      <br>
-	      This is our first step in cleaning the data into a more useable form:</p>
+	      This is our first step in cleaning the data into a more useable form:
 	      	<pre> 
 <code>  # Clean the data by creating a data frame that contains the specific data we want</code>  
 <code>  #       (Time, Sobriety, Placement, Eliminations, and Accuracy)</code>  
@@ -136,14 +136,14 @@ code:before{
 <code>  # Separates the data based on Sobriety in order to create 2 lines (sober and high) for each</code>  
 <code>  #       linear regression graph</code>  
 <code>  soberDF = df.loc[df.Sobriety == "sober"]</code>  
-<code>  highDF = df.loc[df.Sobriety == "high"]</code>  </pre>
+<code>  highDF = df.loc[df.Sobriety == "high"]</code>  </pre> </p>
 	      <p>
 		      Our second step in data cleaning was to create individual lists of the data to be used in creating the graphs. 
 		      We ran into an error where our code to create the graph would not take in data straight from the data frame. 
 		      Creating the individual lists for the data we needed to graph was our way of getting around this error. 
 		      We also created variables for easy title and label creation on the graphs.
 		      <br>
-		      Our second step in the cleaning of data is:</p>
+		      Our second step in the cleaning of data is:
 	     	<pre> 
 <code>  # Variables for graph labels</code>  
 <code>  p = "Placement"</code>  
@@ -160,14 +160,14 @@ code:before{
 <code>  sElm = soberDF['Eliminations'].tolist()</code>  
 <code>  hElm = highDF['Eliminations'].tolist()</code>  
 <code>  sAcc = soberDF['Accuracy'].tolist()</code>  
-<code>  hAcc = highDF['Accuracy'].tolist()</code> </pre>
+<code>  hAcc = highDF['Accuracy'].tolist()</code> </pre> </p>
 	      <p>
 		      Our third step in data cleaning was to remove all characters after the : in the Time data for both the sober and high data. 
 		      We needed to do this in order to graph the time since the data needs to be an integer and not a string. 
 		      In this step we also set 12 PM equal to 0, since 12 PM would be graphed after 11 PM and display the data incorrectly. 
 		      We were able to make this change since all the time data took place in the PM.
 		      <br>
-		      The third step for our cleaning process:</p>
+		      The third step for our cleaning process:
 		<pre> 
 <code>  # Removes the characters after the : and converts the string to an int</code>  
 <code>  #       i.e. 10:00 PM becomes 10</code>  
@@ -187,13 +187,13 @@ code:before{
 <code>      r = int(s[0])</code>  
 <code>      if r == 12:</code>  
 <code>          r = 0</code>  
-<code>      intTimeHig.append(r)</code> </pre>
+<code>      intTimeHig.append(r)</code> </pre> </p>
 	      <p>
 		      Our final step in data cleaning was to remove the % in the Accuracy data. 
 		      We needed to do this for the same reason we removed characters from the Time data. 
 		      The data would not work in a graph if it was not an integer.
 		      <br>
-		      Our final step in cleaning our data into an ideal form for analysis is:</p>
+		      Our final step in cleaning our data into an ideal form for analysis is:
 		<pre> 
 <code>  # Removes % sign from the Accuracy data and converts the string to an int</code>  
 <code>  #       i.e. 30% becomes 30</code>  
@@ -207,7 +207,7 @@ code:before{
 <code>  for j in hAcc:</code>  
 <code>      u = j.split("%",1)</code>  
 <code>      v = int(u[0])</code>  
-<code>      intAccHig.append(v)</code> </pre>
+<code>      intAccHig.append(v)</code> </pre> </p>
 	      
       <h2>What is Wrangling?</h2>
       <center><p>This term is used to describe changing raw data that can be very complicated or includes lots of unnecessary data into something more easily understandable and
@@ -221,8 +221,9 @@ code:before{
 	      consistent when comparing it to the dependent variables which are the number of eliminations, placement, and accuracy. We chose these variables because they were
 	      the closest approximations when you compare it to real life drinking and driving. Each one of these variables relate to reaction time and hand eye coordination,
 	      both of which are important to driving.</p></center>
-      <p>The following code produces our graphs which we will use to support our assertion that getting high has a negative impact on hand eye coordination and 
-	      reaction time</p>
+      <p>
+	      The following code produces our graphs which we will use to support our assertion that getting high has a negative impact on hand eye coordination and 
+	      reaction time:
 	    	<pre> 
 <code>  # Function that creates the graphs for each set of data given as parameters</code>  
 <code>  def graph(x_sober, x_high, y_sober, y_high, x_name):</code>  
@@ -259,7 +260,7 @@ code:before{
 <code>  #   graph(x_sober, x_high, y_sober, y_high, x_name)</code>  
 <code>  graph(sPlace, hPlace, intTimeSob, intTimeHig, p)</code>  
 <code>  graph(sElm, hElm, intTimeSob, intTimeHig, e)</code>  
-<code>  graph(intAccSob, intAccHig, intTimeSob, intTimeHig, a)</code> </pre>
+<code>  graph(intAccSob, intAccHig, intTimeSob, intTimeHig, a)</code> </pre> </p>
 
 </body>
 </html>     
