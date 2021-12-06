@@ -39,6 +39,7 @@ code{
 }
 code:before{
     content: counter(line);
+    
 }
 </style>
 <div id="heading">
@@ -68,8 +69,9 @@ code:before{
         quickly. Creating code that turns large blocks of data into useful information that can be compared and used to make judgements based on that information can take time and
         effort.</center></p>
 	<p>
-	  This is code in our project that collects the data:
-	    <pre>
+		This is code in our project that collects the data:</p>
+	    <p style="background-color:gray;">
+	<pre>
 	  	<code>  # Read in a .csv file containing Fortnite statistics</code>  
 		<code>  file = pd.read_csv('FortniteStatistics.csv')</code>  
 		</pre> </p>
