@@ -80,7 +80,7 @@ code:before{
         quickly. Creating code that turns large blocks of data into useful information that can be compared and used to make judgements based on that information can take time and
         effort.</center></p>
 	<p>
-		During our data gathering process, we found a .csv file on Kaggle that provided the data of a Fortnite player who played while both sober and high.
+		Our data gathering step included us finding a .csv file on Kaggle and then reading in the data from the .csv file for our use throughout the code.
 		<br>
 		This is code in our project that collects the data:
 	<pre>
@@ -120,6 +120,11 @@ code:before{
                   <br>
                   “East Middle School”, “0615”</p></center>
       <p>
+	      Our first step in the data cleaning process was to create a data frame that contained the Time, Sobriety, Placement, Eliminations, and Accuracy columns from the .csv file. 
+	      This allowed for us to ignore all the rest of the columns within the .csv file. At this step, we also created 2 separate data frames correlating to sober and high. 
+	      We did this so that we could separate the data for the player while he was sober, and then for when he was high. 
+	      We were able to provide two lines of best fit since we separated the data for sober and high from the initially created data frame.
+	      <br>
 	      This is our first step in cleaning the data into a more useable form:</p>
 	      	<pre> 
 <code>  # Clean the data by creating a data frame that contains the specific data we want</code>  
@@ -132,7 +137,13 @@ code:before{
 <code>  #       linear regression graph</code>  
 <code>  soberDF = df.loc[df.Sobriety == "sober"]</code>  
 <code>  highDF = df.loc[df.Sobriety == "high"]</code>  </pre>
-	      <p>Our second step in the cleaning of data is:</p>
+	      <p>
+		      Our second step in data cleaning was to create individual lists of the data to be used in creating the graphs. 
+		      We ran into an error where our code to create the graph would not take in data straight from the data frame. 
+		      Creating the individual lists for the data we needed to graph was our way of getting around this error. 
+		      We also created variables for easy title and label creation on the graphs.
+		      <br>
+		      Our second step in the cleaning of data is:</p>
 	     	<pre> 
 <code>  # Variables for graph labels</code>  
 <code>  p = "Placement"</code>  
@@ -150,7 +161,13 @@ code:before{
 <code>  hElm = highDF['Eliminations'].tolist()</code>  
 <code>  sAcc = soberDF['Accuracy'].tolist()</code>  
 <code>  hAcc = highDF['Accuracy'].tolist()</code> </pre>
-	      <p>The third step for our cleaning process:</p>
+	      <p>
+		      Our third step in data cleaning was to remove all characters after the : in the Time data for both the sober and high data. 
+		      We needed to do this in order to graph the time since the data needs to be an integer and not a string. 
+		      In this step we also set 12 PM equal to 0, since 12 PM would be graphed after 11 PM and display the data incorrectly. 
+		      We were able to make this change since all the time data took place in the PM.
+		      <br>
+		      The third step for our cleaning process:</p>
 		<pre> 
 <code>  # Removes the characters after the : and converts the string to an int</code>  
 <code>  #       i.e. 10:00 PM becomes 10</code>  
@@ -171,7 +188,12 @@ code:before{
 <code>      if r == 12:</code>  
 <code>          r = 0</code>  
 <code>      intTimeHig.append(r)</code> </pre>
-	      <p>Our final step in cleaning our data into an ideal form for analysis is:</p>
+	      <p>
+		      Our final step in data cleaning was to remove the % in the Accuracy data. 
+		      We needed to do this for the same reason we removed characters from the Time data. 
+		      The data would not work in a graph if it was not an integer.
+		      <br>
+		      Our final step in cleaning our data into an ideal form for analysis is:</p>
 		<pre> 
 <code>  # Removes % sign from the Accuracy data and converts the string to an int</code>  
 <code>  #       i.e. 30% becomes 30</code>  
