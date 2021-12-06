@@ -106,7 +106,8 @@ code:before{
                   “East Middle School”, “0615”</p></center>
       <p>
 	      This is our first step in cleaning the data into a more useable form:
-	      	<pre> <code>  # Clean the data by creating a data frame that contains the specific data we want</code>  
+	      	<pre> 
+		<code>  # Clean the data by creating a data frame that contains the specific data we want</code>  
 		<code>  #       (Time, Sobriety, Placement, Eliminations, and Accuracy)</code>  
 		<code>  data = {'Time': file['Time of Day'].tolist(), 'Sobriety': file['Mental State'].tolist(), 'Placement': file['Placed'].tolist(),</code>  
 		<code>          'Eliminations': file['Eliminations'].tolist(), 'Accuracy': file['Accuracy'].tolist()}</code>  
@@ -117,7 +118,8 @@ code:before{
 		<code>  soberDF = df.loc[df.Sobriety == "sober"]</code>  
 		<code>  highDF = df.loc[df.Sobriety == "high"]</code>  </pre>
 	      Our second step in the cleaning of data is:
-	     	<pre> <code>  # Variables for graph labels</code>  
+	     	<pre> 
+		<code>  # Variables for graph labels</code>  
 		<code>  p = "Placement"</code>  
 		<code>  e = "Eliminations"</code>  
 		<code>  a = "Accuracy (%)"</code>  
@@ -135,7 +137,8 @@ code:before{
 		<code>  hAcc = highDF['Accuracy'].tolist()</code>  
 		<code>  </code>  </pre>
 	      The third step for our cleaning process:
-		<pre> <code>  # Removes the characters after the : and converts the string to an int</code>  
+		<pre> 
+		<code>  # Removes the characters after the : and converts the string to an int</code>  
 		<code>  #       i.e. 10:00 PM becomes 10</code>  
 		<code>  # It also converts 12 to 0 so that the data for 12 pm comes before the data</code>  
 		<code>  #       for 1 pm</code>  
@@ -156,7 +159,8 @@ code:before{
 		<code>      intTimeHig.append(r)</code>  
 		<code>  </code>  </pre>
 	      Our final step in cleaning our data into an ideal form for analysis is:
-		<pre> <code>  # Removes % sign from the Accuracy data and converts the string to an int</code>  
+		<pre> 
+		<code>  # Removes % sign from the Accuracy data and converts the string to an int</code>  
 		<code>  #       i.e. 30% becomes 30</code>  
 		<code>  intAccSob = []</code>  
 		<code>  for j in sAcc:</code>  
@@ -185,7 +189,8 @@ code:before{
 	      both of which are important to driving.</p></center>
       <center><p>The following code produces our graphs which we will use to support our assertion that getting high has a negative impact on hand eye coordination and 
 	      reaction time</p></center>
-	    	<pre> <code>  # Function that creates the graphs for each set of data given as parameters</code>  
+	    	<pre> 
+		<code>  # Function that creates the graphs for each set of data given as parameters</code>  
 		<code>  def graph(x_sober, x_high, y_sober, y_high, x_name):</code>  
 		<code>      # Plot data points</code>  
 		<code>      plt.scatter(x_sober, y_sober) # sober: red</code>  
