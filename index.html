@@ -32,6 +32,14 @@ div {text-align: center;}
 	width: 200px;
 margin: 0 auto;
 }
+pre {counter-reset: line;
+}
+code{
+    counter-increment: line;
+}
+code:before{
+    content: counter(line);
+}
 </style>
 <div id="heading">
     <img src="https://cdn.discordapp.com/attachments/915657987975184445/916373911447408710/data-science-predictions-for-near-future-1024x440.jpeg.optimal.jpeg" class="ribbon"/>
@@ -58,7 +66,11 @@ margin: 0 auto;
           Another method of gathering data would be web scraping. This is where a computer scientist writes a code that pulls data from a website and analyzes it to confirm that
         it's relevant to the topic. The code would then need to turn it into a form that is usable to the coder. While this process sounds very simple it can get complicated very
         quickly. Creating code that turns large blocks of data into useful information that can be compared and used to make judgements based on that information can take time and
-        effort.</p></center>
+        effort.
+	  This is code in our project that collects the data:
+	  	<code>  # Read in a .csv file containing Fortnite statistics</code>  
+		<code>  file = pd.read_csv('FortniteStatistics.csv')</code>  
+		<code>  </code> </p></center>
       <h2>Data Ethics</h2>
       <center><p> Poorly collected data can have a large effect on the data you are trying to convey. Misleading statistics can have a profound impact on the reader or consumer of the data.
         There are various ways in which data can be misleading. These can include faulty polling, misleading data visualizations, selective bias, flawed correlations, or data 
@@ -92,6 +104,73 @@ margin: 0 auto;
                   “West High School”, “1540”
                   <br>
                   “East Middle School”, “0615”</p></center>
+      <center><p>
+	      This is our first step in cleaning the data into a more useable form:
+	      	<pre> <code>  # Clean the data by creating a data frame that contains the specific data we want</code>  
+		<code>  #       (Time, Sobriety, Placement, Eliminations, and Accuracy)</code>  
+		<code>  data = {'Time': file['Time of Day'].tolist(), 'Sobriety': file['Mental State'].tolist(), 'Placement': file['Placed'].tolist(),</code>  
+		<code>          'Eliminations': file['Eliminations'].tolist(), 'Accuracy': file['Accuracy'].tolist()}</code>  
+		<code>  df = pd.DataFrame(data, columns=['Time', 'Sobriety', 'Placement', 'Eliminations', 'Accuracy'])</code>  
+		<code>  </code>  
+		<code>  # Separates the data based on Sobriety in order to create 2 lines (sober and high) for each</code>  
+		<code>  #       linear regression graph</code>  
+		<code>  soberDF = df.loc[df.Sobriety == "sober"]</code>  
+		<code>  highDF = df.loc[df.Sobriety == "high"]</code>  </pre>
+	      Our second step in the cleaning of data is:
+	     	<pre> <code>  # Variables for graph labels</code>  
+		<code>  p = "Placement"</code>  
+		<code>  e = "Eliminations"</code>  
+		<code>  a = "Accuracy (%)"</code>  
+		<code>  </code>  
+		<code>  # Lists from data frame data in order to use when creating graphs</code>  
+		<code>  sTime = soberDF['Time'].tolist()</code>  
+		<code>  hTime = highDF['Time'].tolist()</code>  
+		<code>  sSob = soberDF['Sobriety'].tolist()</code>  
+		<code>  hSob = highDF['Sobriety'].tolist()</code>  
+		<code>  sPlace = soberDF['Placement'].tolist()</code>  
+		<code>  hPlace = highDF['Placement'].tolist()</code>  
+		<code>  sElm = soberDF['Eliminations'].tolist()</code>  
+		<code>  hElm = highDF['Eliminations'].tolist()</code>  
+		<code>  sAcc = soberDF['Accuracy'].tolist()</code>  
+		<code>  hAcc = highDF['Accuracy'].tolist()</code>  
+		<code>  </code>  </pre>
+	      The third step for our cleaning process:
+		<pre> <code>  # Removes the characters after the : and converts the string to an int</code>  
+		<code>  #       i.e. 10:00 PM becomes 10</code>  
+		<code>  # It also converts 12 to 0 so that the data for 12 pm comes before the data</code>  
+		<code>  #       for 1 pm</code>  
+		<code>  intTimeSob = []</code>  
+		<code>  for i in sTime:</code>  
+		<code>      s = i.split(":", 1)</code>  
+		<code>      r = int(s[0])</code>  
+		<code>      if r == 12:</code>  
+		<code>          r = 0</code>  
+		<code>      intTimeSob.append(r)</code>  
+		<code>  </code>  
+		<code>  intTimeHig = []</code>  
+		<code>  for i in hTime:</code>  
+		<code>      s = i.split(":", 1)</code>  
+		<code>      r = int(s[0])</code>  
+		<code>      if r == 12:</code>  
+		<code>          r = 0</code>  
+		<code>      intTimeHig.append(r)</code>  
+		<code>  </code>  </pre>
+	      Our final step in cleaning our data into an ideal form for analysis is:
+		<pre> <code>  # Removes % sign from the Accuracy data and converts the string to an int</code>  
+		<code>  #       i.e. 30% becomes 30</code>  
+		<code>  intAccSob = []</code>  
+		<code>  for j in sAcc:</code>  
+		<code>      u = j.split("%",1)</code>  
+		<code>      v = int(u[0])</code>  
+		<code>      intAccSob.append(v)</code>  
+		<code>  </code>  
+		<code>  intAccHig = []</code>  
+		<code>  for j in hAcc:</code>  
+		<code>      u = j.split("%",1)</code>  
+		<code>      v = int(u[0])</code>  
+		<code>      intAccHig.append(v)</code>  
+		<code>  </code>  </pre>
+	      </p></center>
       <h2>What is Wrangling?</h2>
       <center><p>This term is used to describe changing raw data that can be very complicated or includes lots of unnecessary data into something more easily understandable and
         simple to use. For example if the data gathered was a table that included 15 column metrics about a list of schools but the computer scientist only needs 2 of those
@@ -104,6 +183,45 @@ margin: 0 auto;
 	      consistent when comparing it to the dependent variables which are the number of eliminations, placement, and accuracy. We chose these variables because they were
 	      the closest approximations when you compare it to real life drinking and driving. Each one of these variables relate to reaction time and hand eye coordination,
 	      both of which are important to driving.</p></center>
+      <center><p>The following code produces our graphs which we will use to support our assertion that getting high has a negative impact on hand eye coordination and 
+	      reaction time</p></center>
+	    	<pre> <code>  # Function that creates the graphs for each set of data given as parameters</code>  
+		<code>  def graph(x_sober, x_high, y_sober, y_high, x_name):</code>  
+		<code>      # Plot data points</code>  
+		<code>      plt.scatter(x_sober, y_sober) # sober: red</code>  
+		<code>      plt.scatter(x_high, y_high) # high: blue</code>  
+		<code>  </code>  
+		<code>      # Plot line of best fit</code>  
+		<code>      x = np.array(x_sober)</code>  
+		<code>      y = np.array(y_sober)</code>  
+		<code>      m, b = np.polyfit(x, y, 1)</code>  
+		<code>  </code>  
+		<code>      plt.plot(x, y, 'o')</code>  
+		<code>      plt.plot(x, m*x + b, 'blue', label = "Sober")</code>  
+		<code>  </code>  
+		<code>      x2 = np.array(x_high)</code>  
+		<code>      y2 = np.array(y_high)</code>  
+		<code>      n, c = np.polyfit(x2, y2, 1)</code>  
+		<code>  </code>  
+		<code>      plt.plot(x2, y2, 'o')</code>  
+		<code>      plt.plot(x2, n*x2 + c, 'orange', label = "High")</code>  
+		<code>  </code>  
+		<code>      # Add title and axis labels</code>  
+		<code>      plt.title(x_name + " Based on Sobriety")</code>  
+		<code>      plt.xlabel(x_name)</code>  
+		<code>      plt.ylabel("Time (PM): 12 PM is shown as 0 to place it below 1 PM")</code>  
+		<code>      plt.yticks(np.arange(0,12,1))</code>  
+		<code>  </code>  
+		<code>      plt.legend()</code>  
+		<code>      plt.savefig("" + x_name + ".png")</code>  
+		<code>      plt.show()</code>  
+		<code>  </code>  
+		<code>  # Function calls for the function creating the individual graphs</code>  
+		<code>  #   graph(x_sober, x_high, y_sober, y_high, x_name)</code>  
+		<code>  graph(sPlace, hPlace, intTimeSob, intTimeHig, p)</code>  
+		<code>  graph(sElm, hElm, intTimeSob, intTimeHig, e)</code>  
+		<code>  graph(intAccSob, intAccHig, intTimeSob, intTimeHig, a)</code>  </code>  
+		<code>  <code> </pre>
 
   <head>
   <body>
