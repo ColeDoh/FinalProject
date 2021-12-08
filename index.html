@@ -82,7 +82,7 @@ code:before{
         effort.</center></p>
 	<p>
 		Our data gathering step included us finding a .csv file on Kaggle and then reading in the data from the .csv file for our use throughout the code.
-		<br>
+		<br><br>
 		This is code in our project that collects the data:
 	<pre>
 <code>  # Read in a .csv file containing Fortnite statistics</code>  
@@ -127,7 +127,7 @@ code:before{
 	      We were able to provide two lines of best fit since we separated the data for sober and high from the initially created data frame.
 	      <br><br>
 	      This is our first step in cleaning the data into a more useable form:
-	      	<pre> 
+	<pre> 
 <code>  # Clean the data by creating a data frame that contains the specific data we want</code>  
 <code>  #       (Time, Sobriety, Placement, Eliminations, and Accuracy)</code>  
 <code>  data = {'Time': file['Time of Day'].tolist(), 'Sobriety': file['Mental State'].tolist(), 'Placement': file['Placed'].tolist(),</code>  
@@ -137,7 +137,7 @@ code:before{
 <code>  # Separates the data based on Sobriety in order to create 2 lines (sober and high) for each</code>  
 <code>  #       linear regression graph</code>  
 <code>  soberDF = df.loc[df.Sobriety == "sober"]</code>  
-<code>  highDF = df.loc[df.Sobriety == "high"]</code>  </pre> </p>
+<code>  highDF = df.loc[df.Sobriety == "high"]</code> </pre> </p>
 	      <p>
 		      Our second step in data cleaning was to create individual lists of the data to be used in creating the graphs. 
 		      We ran into an error where our code to create the graph would not take in data straight from the data frame. 
@@ -145,7 +145,7 @@ code:before{
 		      We also created variables for easy title and label creation on the graphs.
 		      <br><br>
 		      Our second step in the cleaning of data is:
-	     	<pre> 
+	<pre> 
 <code>  # Variables for graph labels</code>  
 <code>  p = "Placement"</code>  
 <code>  e = "Eliminations"</code>  
@@ -169,7 +169,7 @@ code:before{
 		      We were able to make this change since all the time data took place in the PM.
 		      <br><br>
 		      The third step for our cleaning process:
-		<pre> 
+	<pre> 
 <code>  # Removes the characters after the : and converts the string to an int</code>  
 <code>  #       i.e. 10:00 PM becomes 10</code>  
 <code>  # It also converts 12 to 0 so that the data for 12 pm comes before the data</code>  
@@ -195,7 +195,7 @@ code:before{
 		      The data would not work in a graph if it was not an integer.
 		      <br><br>
 		      Our final step in cleaning our data into an ideal form for analysis is:
-		<pre> 
+	<pre> 
 <code>  # Removes % sign from the Accuracy data and converts the string to an int</code>  
 <code>  #       i.e. 30% becomes 30</code>  
 <code>  intAccSob = []</code>  
@@ -232,7 +232,7 @@ code:before{
 	      <br><br>
 	      The following code produces our graphs which we will use to support our assertion that getting high has a negative impact on hand eye coordination and 
 	      reaction time:
-	    	<pre> 
+	<pre> 
 <code>  # Function that creates the graphs for each set of data given as parameters</code>  
 <code>  def graph(x_sober, x_high, y_sober, y_high, x_name):</code>  
 <code>      # Plot data points</code>  
