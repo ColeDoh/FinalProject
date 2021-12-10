@@ -226,8 +226,10 @@ code:before{
       <p>
 	      We built a function that creates graphs based on the parameters passed in. 
 	      The first step in the function was to plot a scatter of  both the sober and high data points. 
-	      The next step is to find the line of best fit for both data sets plotting the lines calculated over the scattered data. 
-	      We then added Title names to each of the graphs and labels corresponding to the x- and y-axises. 
+	      The next step is to find the line of best fit for both data sets plotting the lines calculated over the scattered data.
+	      We found the line of best fit by turning our x and y data into arrays, and using the polyfit function to create a line.
+	      The final parameter of the polyfit function call is a 1 in order to make the line straight across the scattered data points.
+	      We then added title names to each of the graphs and labels corresponding to the x- and y-axises. 
 	      We also arranged the y-axis ticks to arrange the time correctly. 
 	      The last part of the function was to add an legend explaining that sober data is blue and high data is orange.
 	      <br><br>
